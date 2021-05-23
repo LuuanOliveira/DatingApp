@@ -6,19 +6,20 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NavComponent } from './nav/nav.component';
-import { HomeComponent } from './home/home.component';
-import { RegisterComponent } from './register/register.component';
-import { MemberListComponent } from './members/member-list/member-list.component';
-import { MemberDetailComponent } from './members/member-detail/member-detail.component';
-import { ListsComponent } from './lists/lists.component';
-import { MessagesComponent } from './messages/messages.component';
+import { NavComponent } from './pages/nav/nav.component';
+import { HomeComponent } from './pages/home/home.component';
+import { RegisterComponent } from './pages/register/register.component';
+import { MemberListComponent } from './pages/members/member-list/member-list.component';
+import { MemberDetailComponent } from './pages/members/member-detail/member-detail.component';
+import { ListsComponent } from './pages/lists/lists.component';
+import { MessagesComponent } from './pages/messages/messages.component';
 import { SharedModule } from './_modules/shared.module';
-import { TestErrorsComponent } from './errors/test-errors/test-errors.component';
+import { TestErrorsComponent } from './pages/errors/test-errors/test-errors.component';
 import { ErrorInterceptor } from './_interceptors/error.interceptor';
-import { NotFoundComponent } from './errors/not-found/not-found.component';
-import { ServerErrorComponent } from './errors/server-error/server-error.component';
-import { MemberCardComponent } from './members/member-card/member-card.component';
+import { NotFoundComponent } from './pages/errors/not-found/not-found.component';
+import { ServerErrorComponent } from './pages/errors/server-error/server-error.component';
+import { MemberCardComponent } from './pages/members/member-card/member-card.component';
+import { LoginComponent } from './pages/login/login.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { MemberCardComponent } from './members/member-card/member-card.component
     TestErrorsComponent,
     NotFoundComponent,
     ServerErrorComponent,
-    MemberCardComponent
+    MemberCardComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
