@@ -51,5 +51,18 @@ namespace API.Controllers
 
             return BadRequest("Failed to update user");
         }
+
+        [HttpDelete]
+        public async Task<ActionResult> DeleteUser() 
+        {
+            var username = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var user = await _userRepository.GetUserByUsernameAsync(username);
+
+            _userRepository.DeleteUserAsync(user);
+
+            if (await _userRepository.SaveAllAsync()) return NoContent();
+
+            return BadRequest("Failed to delete user");
+        }
     }
 }

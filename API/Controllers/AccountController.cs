@@ -1,3 +1,4 @@
+using System.Globalization;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,6 +31,7 @@ namespace API.Controllers
             var user = new AppUser
             {   
                 UserName = registerDto.UserName.ToLower(),
+                KnownAs = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(registerDto.UserName.ToLower()),
                 PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDto.Password)),
                 PasswordSalt = hmac.Key
             };

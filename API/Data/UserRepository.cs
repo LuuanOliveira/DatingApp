@@ -63,5 +63,10 @@ namespace API.Data
         {
             _context.Entry(user).State = EntityState.Modified;
         }
+
+        public void DeleteUserAsync(AppUser user)
+        {
+            _context.Entry(user).State = EntityState.Deleted;
+        }
     }
 }
