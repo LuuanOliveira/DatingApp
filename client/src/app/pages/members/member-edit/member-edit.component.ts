@@ -1,11 +1,13 @@
 import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { take } from 'rxjs/operators';
 import { Member } from 'src/app/_models/member';
 import { User } from 'src/app/_models/user';
 import { AccountService } from 'src/app/_services/account.service';
 import { MembersService } from 'src/app/_services/members.service';
+// import { ConfirmationService } from 'primeng/api';
 
 @Component({
   selector: 'app-member-edit',
@@ -25,7 +27,9 @@ export class MemberEditComponent implements OnInit {
   constructor(
     private accountService: AccountService,
     private memberService: MembersService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private router: Router
+    // private confirmationService: ConfirmationService
   ) { 
     this.accountService.currentUser$.pipe(take(1)).subscribe(user => this.user = user);
   }
@@ -37,13 +41,29 @@ export class MemberEditComponent implements OnInit {
   loadMember() {
     this.memberService.getMember(this.user.userName).subscribe(member => {
       this.member = member;
-    })
+    });
   }
 
   updateMember() {
     this.memberService.updateMember(this.member).subscribe(() => {
       this.toastr.success('Profile updated sucessfully')
       this.editForm.reset(this.member);
-    })
+    });
+  }
+
+  deleteMember() {
+    // this.confirmationService.confirm({
+    //   message: 'Do you want to permanently delete your profile?',
+    //   header: 'Confirmation',
+    //   icon: 'pi pi-exclamation-triangle',
+    //   accept: () => {
+    //     this.memberService.deleteMember(this.member.username).subscribe(() => {
+    //       this.toastr.success('Profile deleted sucessfully')
+    //       this.accountService.logout();
+    //       this.router.navigateByUrl('/');
+    //     });
+    //   },
+    //   reject: () => {}
+    // });
   }
 }

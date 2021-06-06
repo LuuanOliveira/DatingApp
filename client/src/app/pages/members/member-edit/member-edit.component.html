@@ -34,6 +34,7 @@
             </div>
             <div class="card-footer">
                 <button [disabled]="!editForm.dirty" form="editForm" type="submit" class="btn btn-success btn-block">Save Changes</button>
+                <button (click)="deleteMember()" class="btn btn-danger btn-block">Delete profile</button>
             </div>
         </div>
     </div>
@@ -63,3 +64,4 @@
         </tabset>
     </div>
 </div>
+<!-- <p-confirmDialog [baseZIndex]="10000" acceptLabel="Yes" rejectLabel="No" styleClass="red-dialog"></p-confirmDialog> -->
