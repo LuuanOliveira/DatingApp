@@ -7,7 +7,7 @@ import { Member } from 'src/app/_models/member';
 import { User } from 'src/app/_models/user';
 import { AccountService } from 'src/app/_services/account.service';
 import { MembersService } from 'src/app/_services/members.service';
-// import { ConfirmationService } from 'primeng/api';
+import { ConfirmationService } from 'primeng/api';
 
 @Component({
   selector: 'app-member-edit',
@@ -28,8 +28,8 @@ export class MemberEditComponent implements OnInit {
     private accountService: AccountService,
     private memberService: MembersService,
     private toastr: ToastrService,
-    private router: Router
-    // private confirmationService: ConfirmationService
+    private router: Router,
+    private confirmationService: ConfirmationService
   ) { 
     this.accountService.currentUser$.pipe(take(1)).subscribe(user => this.user = user);
   }
@@ -52,18 +52,18 @@ export class MemberEditComponent implements OnInit {
   }
 
   deleteMember() {
-    // this.confirmationService.confirm({
-    //   message: 'Do you want to permanently delete your profile?',
-    //   header: 'Confirmation',
-    //   icon: 'pi pi-exclamation-triangle',
-    //   accept: () => {
-    //     this.memberService.deleteMember(this.member.username).subscribe(() => {
-    //       this.toastr.success('Profile deleted sucessfully')
-    //       this.accountService.logout();
-    //       this.router.navigateByUrl('/');
-    //     });
-    //   },
-    //   reject: () => {}
-    // });
+    this.confirmationService.confirm({
+      message: 'Do you want to permanently delete your profile?',
+      header: 'Confirmation',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.memberService.deleteMember(this.member.username).subscribe(() => {
+          this.toastr.success('Profile deleted sucessfully')
+          this.accountService.logout();
+          this.router.navigateByUrl('/');
+        });
+      },
+      reject: () => {}
+    });
   }
 }

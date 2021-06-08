@@ -25,6 +25,10 @@ import { MemberEditComponent } from './pages/members/member-edit/member-edit.com
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { LoadingInterceptor } from './_interceptors/loading.interceptor';
 
+//PrimeNg
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ConfirmationService } from 'primeng/api';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,10 +52,12 @@ import { LoadingInterceptor } from './_interceptors/loading.interceptor';
     HttpClientModule,
     BrowserAnimationsModule,
     FormsModule,
+    ConfirmDialogModule,
     SharedModule,
     NgxSpinnerModule
   ],
   providers: [
+    ConfirmationService,
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true }
