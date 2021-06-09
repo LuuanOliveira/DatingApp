@@ -53,8 +53,8 @@ export class MemberEditComponent implements OnInit {
 
   deleteMember() {
     this.confirmationService.confirm({
-      message: 'Do you want to permanently delete your profile?',
-      header: 'Confirmation',
+      message: 'Você deseja excluir permanentemente o seu perfil?',
+      header: 'Confirmação',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
         this.memberService.deleteMember(this.member.username).subscribe(() => {

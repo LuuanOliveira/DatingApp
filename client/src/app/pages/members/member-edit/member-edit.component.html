@@ -1,10 +1,10 @@
 <div class="row" *ngIf="member">
     <div class="col-4">
-        <h1>Your profile</h1>
+        <h1>Seu Perfil</h1>
     </div>
     <div class="col-8">
         <div *ngIf="editForm.dirty" class="alert alert-info">
-            <strong>Information: </strong>You have made changes. Any unsaved changes will be lost
+            <strong>Alerta: </strong>Você fez alterações. Todas as alterações não salvas serão perdidas
         </div>
     </div>
     <div class="col-4">
@@ -13,55 +13,55 @@
                 class="card-img-top img-thumbnail">
             <div class="card-body">
                 <div>
-                    <strong>Location:</strong>
+                    <strong>Localização:</strong>
                     <p>{{ member.city }}, {{ member.country }}</p>
                 </div>
 
                 <div>
-                    <strong>Age:</strong>
+                    <strong>Idade:</strong>
                     <p>{{ member.age }}</p>
                 </div>
 
                 <div>
-                    <strong>Last Active:</strong>
+                    <strong>Ativo pela última vez::</strong>
                     <p>{{ member.lastActive }}</p>
                 </div>
 
                 <div>
-                    <strong>Member since:</strong>
+                    <strong>Membro desde:</strong>
                     <p>{{ member.created }}</p>
                 </div>
             </div>
             <div class="card-footer">
-                <button [disabled]="!editForm.dirty" form="editForm" type="submit" class="btn btn-success btn-block">Save Changes</button>
-                <button (click)="deleteMember()" class="btn btn-danger btn-block">Delete profile</button>
+                <button [disabled]="!editForm.dirty" form="editForm" type="submit" class="btn btn-primary btn-block">Salvar Alterações</button>
+                <button (click)="deleteMember()" class="btn btn-danger btn-block">Apagar Perfil</button>
             </div>
         </div>
     </div>
 
     <div class="col-8">
         <tabset class="member-tabset">
-            <tab heading='About {{ member.knownAs }}'>
+            <tab heading='Sobre {{ member.knownAs }}'>
                 <form #editForm="ngForm" id="editForm" (ngSubmit)="updateMember()">
-                    <h4>Description</h4>
+                    <h4>Descrição:</h4>
                     <textarea class="form-control" [(ngModel)]="member.introduction" name="introduction" rows="6"></textarea>
-                    <h4 class="mt-2">Looking for</h4>
+                    <h4 class="mt-2">Procurando por:</h4>
                     <textarea class="form-control" [(ngModel)]="member.lookingFor" name="lookingFor" rows="6"></textarea>
-                    <h4 class="mt-2">Interests</h4>
+                    <h4 class="mt-2">Interesses:</h4>
                     <textarea class="form-control" [(ngModel)]="member.interests" name="interests" rows="6"></textarea>
-                    <h4 class="mt-2">Location Details:</h4>
+                    <h4 class="mt-2">Detalhes da localização:</h4>
                     <div class="form-inline">
-                        <label for="city">City:</label>
+                        <label for="city">Cidade:</label>
                         <input class="form-control mx-2" [(ngModel)]="member.city" type="text" name="city">
-                        <label for="city">Country:</label>
+                        <label for="city">País:</label>
                         <input class="form-control mx-2" [(ngModel)]="member.country" type="text" name="country">
                     </div>
                 </form>
             </tab>
-            <tab heading='Edit Photos'>
+            <tab heading='Editar Fotos'>
                 <p>Photo edit will go here</p>
             </tab>
         </tabset>
     </div>
 </div>
-<p-confirmDialog [baseZIndex]="10000" acceptLabel="Yes" rejectLabel="No" styleClass="red-dialog"></p-confirmDialog>
+<p-confirmDialog [baseZIndex]="10000" acceptLabel="Sim" rejectLabel="Não" styleClass="red-dialog"></p-confirmDialog>

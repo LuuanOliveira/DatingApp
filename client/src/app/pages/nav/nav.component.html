@@ -7,23 +7,23 @@
             <a class="nav-link" routerLink="/members" routerLinkActive="active">Matches</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLink="/lists" routerLinkActive="active">Lists</a>
+            <a class="nav-link" routerLink="/lists" routerLinkActive="active">Listas</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLink="/messages" routerLinkActive="active">Messages</a>
+            <a class="nav-link" routerLink="/messages" routerLinkActive="active">Mensagens</a>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link" routerLink="/errors" routerLinkActive="active">Errors</a>
-          </li>
+          </li> -->
         </ng-container>
       </ul>
 
       <div class="dropdown" *ngIf="(accountService.currentUser$ | async) as user" dropdown>
-        <a class="dropdown-toggle text-light" dropdownToggle>Welcome {{user.userName | titlecase}}</a>
+        <a class="dropdown-toggle text-light" dropdownToggle>Bem-Vindo {{user.userName | titlecase}}</a>
         <div class="dropdown-menu mt-3" *dropdownMenu>
-          <a routerLink='/member/edit' class="dropdown-item">Edit Profile</a>
+          <a routerLink='/member/edit' class="dropdown-item">Editar Perfil <i class="fa fa-pencil-square-o"></i></a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" (click)="logout()">Logout</a>
+          <a routerLink='' class="dropdown-item" (click)="logout()">Sair <i class="fa fa-share-square-o"></i></a>
         </div>
       </div>
   </div>
