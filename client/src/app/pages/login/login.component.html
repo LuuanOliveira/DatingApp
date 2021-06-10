@@ -10,7 +10,11 @@
         <input type="password" class="form-control" name="password"
             [(ngModel)]="model.password" placeholder="Senha">
     </div>
-    <div class="form-group text-center">
+    <div style="display: flex; align-items: center; justify-content: center;" class="form-group">
+        <ngx-recaptcha2 #captchaElem [siteKey]="siteKey" 
+            formControlName="recaptcha"></ngx-recaptcha2>
+    </div>
+    <div class="form-group text-center mt-3">
         <button class="btn btn-primary mr-2" type="submit">Entrar</button>
         <button class="btn btn-default mr-2" (click)="cancel()" type="button">Cancelar</button>
     </div>
