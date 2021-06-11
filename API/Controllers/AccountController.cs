@@ -15,7 +15,8 @@ namespace API.Controllers
     {
         private readonly DataContext _context;
         private readonly ITokenService _tokenService;
-        public AccountController(DataContext context, ITokenService tokenService)
+        public AccountController(DataContext context, 
+            ITokenService tokenService)
         {
             _tokenService = tokenService;
             _context = context;
@@ -52,7 +53,7 @@ namespace API.Controllers
             var user = await _context.Users
                 .SingleOrDefaultAsync(x => x.UserName == loginDto.UserName);
 
-            if (user == null) return Unauthorized("Invalid username");
+            if (user == null) return Unauthorized("Usuário Inválido");
 
             using var hmac = new HMACSHA512(user.PasswordSalt);
 
@@ -60,9 +61,9 @@ namespace API.Controllers
 
             for (int count = 0; count < computedHash.Length; count++)
             {
-                if (computedHash[count] != user.PasswordHash[count]) return Unauthorized("Invalid password");
+                if (computedHash[count] != user.PasswordHash[count]) return Unauthorized("Senha Inválida");
             }
-
+            
             return new UserDto 
             {
                 UserName = user.UserName,

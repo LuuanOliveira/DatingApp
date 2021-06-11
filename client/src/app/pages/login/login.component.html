@@ -1,17 +1,17 @@
-<form *ngIf="(accountService.currentUser$ | async) === null" #loginForm="ngForm" (ngSubmit)="login()" 
+<form *ngIf="(accountService.currentUser$ | async) === null" [formGroup]="loginFormGroup" (ngSubmit)="login()" 
     autocomplete="off">
     <h2 class="text-center text-primary">Entrar</h2>
     <hr>
     <div class="form-group">
         <input type="text" class="form-control" name="username"
-            [(ngModel)]="model.username" placeholder="Usuário">
+            formControlName="userName" placeholder="Usuário">
     </div>
     <div class="form-group">
         <input type="password" class="form-control" name="password"
-            [(ngModel)]="model.password" placeholder="Senha">
+            formControlName="password" placeholder="Senha">
     </div>
     <div style="display: flex; align-items: center; justify-content: center;" class="form-group">
-        <ngx-recaptcha2 #captchaElem [siteKey]="siteKey" 
+        <ngx-recaptcha2 [siteKey]="siteKey" (success)="handleSuccess($event)" (error)="handleError()"
             formControlName="recaptcha"></ngx-recaptcha2>
     </div>
     <div class="form-group text-center mt-3">
