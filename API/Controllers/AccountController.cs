@@ -25,7 +25,13 @@ namespace API.Controllers
         [HttpPost("register")]
         public async Task<ActionResult<UserDto>> Register(RegisterDto registerDto)
         {
-            if (await UserExists(registerDto.UserName)) return BadRequest("Username is taken");
+            if (string.IsNullOrEmpty(registerDto.UserName))
+                return BadRequest("Usuário Inválido");
+
+            if (string.IsNullOrEmpty(registerDto.Password))
+                return BadRequest("Senha Inválida");
+
+            if (await UserExists(registerDto.UserName)) return BadRequest("O nome de usuário já está em uso");
 
             using var hmac = new HMACSHA512();
 
