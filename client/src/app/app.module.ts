@@ -29,6 +29,7 @@ import { LoadingInterceptor } from './_interceptors/loading.interceptor';
 //PrimeNg
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
+import { PhotoEditorComponent } from './pages/members/photo-editor/photo-editor.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { ConfirmationService } from 'primeng/api';
     ServerErrorComponent,
     MemberCardComponent,
     LoginComponent,
-    MemberEditComponent
+    MemberEditComponent,
+    PhotoEditorComponent
   ],
   imports: [
     BrowserModule,
