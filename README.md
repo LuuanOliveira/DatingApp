@@ -3,21 +3,21 @@ Developing skills in .NET Core, TypeScript and Angular 💡
 
 ## :page_facing_up: APP:
 
-![Alt text](https://github.com/LuuanOliveira/DatingApp/tree/develop/client/src/assets/GIF.gif)
+![Alt text](https://github.com/LuuanOliveira/DatingApp/blob/develop/client/src/assets/GIF.gif)
 
 ## 🛠️ Construção:
 
-* [Swagger] - Documentação
+* [Swagger] - Documentation
 * [.NET CORE] - Back-End
 * [Angular] - Front-End
-* [C#] - Linguagem de programação
-* [TypeScript] - Linguagem de programação
-* [IOC] - Injeção de dependência
-* [SQLite] - Banco de dados
+* [C#] - Language
+* [TypeScript] - Language
+* [IOC] - Dependency injection
+* [SQLite] - DataBase
 
 ## ✒️ Autor:
 
-* **Desenvolvedor** - [Luan Oliveira](https://github.com/LuuanOliveira)
+* **Developer** - [Luan Oliveira](https://github.com/LuuanOliveira)
 * Não há nada que uma boa dose de criatividade não resolva 📢
 
 ---
