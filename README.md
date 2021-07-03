@@ -5,7 +5,7 @@ Developing skills in .NET Core, TypeScript and Angular 💡
 
 ![Alt text](https://github.com/LuuanOliveira/DatingApp/blob/develop/client/src/assets/GIF.gif)
 
-## 🛠️ Construção:
+## 🛠️ Construction:
 
 * [Swagger] - Documentation
 * [.NET CORE] - Back-End
@@ -15,10 +15,9 @@ Developing skills in .NET Core, TypeScript and Angular 💡
 * [IOC] - Dependency injection
 * [SQLite] - DataBase
 
-## ✒️ Autor:
+## ✒️ Credits:
 
-* **Developer** - [Luan Oliveira](https://github.com/LuuanOliveira)
-* Não há nada que uma boa dose de criatividade não resolva 📢
+* **Developer** - [Dating APP](https://github.com/TryCatchLearn/DatingApp)
 
 ---
 alert('Developer by 💙');
