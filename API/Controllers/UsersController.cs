@@ -59,6 +59,24 @@ namespace API.Controllers
             return BadRequest("Falha ao atualizar usuário");
         }
 
+        [HttpPut("set-main-photo/{photoId}")]
+        public async Task<ActionResult> SetMainPhoto(int photoId) 
+        {
+            var user = await _userRepository.GetUserByUsernameAsync(User.GetUserName());
+
+            var photo = user.Photos.FirstOrDefault(x => x.Id == photoId);
+
+            if (photo.IsMain) return BadRequest("Esta já é sua foto principal");
+
+            var currentMain = user.Photos.FirstOrDefault(x => x.IsMain);
+            if (currentMain != null) currentMain.IsMain = false;
+            photo.IsMain = true;
+
+            if (await _userRepository.SaveAllAsync()) return NoContent();
+
+            return BadRequest("Falha ao definir foto principal");
+        }
+
         [HttpPost("add-photo")]
         public async Task<ActionResult<PhotoDto>> AddPhoto(IFormFile file)
         {
