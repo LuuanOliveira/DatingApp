@@ -10,9 +10,6 @@ Developing skills in .NET Core, TypeScript and Angular 💡
 * [Swagger] - Documentation
 * [.NET CORE] - Back-End
 * [Angular] - Front-End
-* [C#] - Language
-* [TypeScript] - Language
-* [IOC] - Dependency injection
 * [SQLite] - DataBase
 
 ## ✒️ Credits:
