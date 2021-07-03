@@ -29,13 +29,13 @@
             Solte as fotos aqui
         </div>
 
-        <div class="mb-3">
-            Múltiplos
-            <input class="" type="file" ng2FileSelect [uploader]="uploader" multiple  />
+        <div>
+            <label for="set-mult">Múltiplos</label> 
+            <input id="set-mult" type="file" ng2FileSelect [uploader]="uploader" multiple  />
         </div>
         <div>
-            Único
-            <input class="" type="file" ng2FileSelect [uploader]="uploader" />
+            <label for="set-single">Único</label> 
+            <input id="set-single" type="file" ng2FileSelect [uploader]="uploader" />
         </div>
         
     </div>
@@ -69,10 +69,6 @@
                 (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
                 <span class="fa fa-upload"></span> Upload
             </button>
-            <!-- <button type="button" class="btn btn-warning btn-s"
-                    (click)="uploader.cancelAll()" [disabled]="!uploader.isUploading">
-                <span class="fa fa-ban"></span> Cancelar
-            </button> -->
             <button type="button" class="btn btn-danger"
                 (click)="uploader.clearQueue()" [disabled]="!uploader.queue.length">
                 <span class="fa fa-trash"></span> Remover

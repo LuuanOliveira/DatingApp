@@ -3,19 +3,23 @@
     scroll-behavior: smooth;
 }
 
-::-webkit-scrollbar{
+::-webkit-scrollbar {
     background-color: black;
-    width: 8px;
+    width: 10px;
 }
 
-::-webkit-scrollbar-thumb{
-    background-color: black;
-    border-radius: 5px;
+::-webkit-scrollbar-thumb {
+    background-color: rgb(34, 34, 34);
+    border-radius: 20px;
 }
 
-::-webkit-scrollbar-track{
+::-webkit-scrollbar-track {
     background-color: #593196;
     border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: black; 
 }
 
 body { 
@@ -67,4 +71,8 @@ body {
     border: 0;
     border-top: 1px solid #eee;
     padding: 15px 0;
+}
+
+.ngx-gallery-thumbnail.ngx-gallery-active {  
+    border: 1px solid #593196 !important;
 }

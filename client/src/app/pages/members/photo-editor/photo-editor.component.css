@@ -9,5 +9,15 @@ img.img-thumbnail {
 }
 
 input[type=file] {
-    color: transparent;
+    display: none;
+    /* color: transparent; */
+}
+
+label {
+    background-color: #593196;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    margin: 10px;
+    padding: 6px 20px
 }

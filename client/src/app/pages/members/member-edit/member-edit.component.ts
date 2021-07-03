@@ -46,7 +46,7 @@ export class MemberEditComponent implements OnInit {
 
   updateMember() {
     this.memberService.updateMember(this.member).subscribe(() => {
-      this.toastr.success('Profile updated sucessfully')
+      this.toastr.success('Perfil atualizado com sucesso')
       this.editForm.reset(this.member);
     });
   }
@@ -58,7 +58,7 @@ export class MemberEditComponent implements OnInit {
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
         this.memberService.deleteMember(this.member.username).subscribe(() => {
-          this.toastr.success('Profile deleted sucessfully')
+          this.toastr.success('Perfil excluído com sucesso')
           this.accountService.logout();
           this.router.navigateByUrl('/');
         });
