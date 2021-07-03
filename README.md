@@ -1,7 +1,7 @@
 # Dating APP ❤️
 Developing skills in .NET Core, TypeScript and Angular 💡 
 
-## :page_facing_up: APP:
+## :pushpin: APP:
 
 ![Alt text](https://github.com/LuuanOliveira/DatingApp/blob/develop/client/src/assets/GIF.gif)
 
