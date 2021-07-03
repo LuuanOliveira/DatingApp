@@ -66,7 +66,7 @@ namespace API.Controllers
 
             var photo = user.Photos.FirstOrDefault(x => x.Id == photoId);
 
-            if (photo.IsMain) return BadRequest("Esta já é sua foto principal");
+            if (photo.IsMain) return BadRequest("Falha, esta já é sua foto principal");
 
             var currentMain = user.Photos.FirstOrDefault(x => x.IsMain);
             if (currentMain != null) currentMain.IsMain = false;
@@ -102,6 +102,30 @@ namespace API.Controllers
             }
             
             return BadRequest("Falha ao adicionar foto");
+        }
+
+        [HttpDelete("delete-photo/{photoId}")]
+        public async Task<ActionResult> DeletePhoto(int photoId)
+        {
+            var user = await _userRepository.GetUserByUsernameAsync(User.GetUserName());
+
+            var photo = user.Photos.FirstOrDefault(x => x.Id == photoId);
+
+            if (photo == null) return NotFound();
+
+            if (photo.IsMain) return BadRequest("Falha, não é possível deletar a foto principal");
+
+            if (photo.PublicId != null) 
+            {
+                var result = await _photoService.DeletePhotoAsync(photo.PublicId);
+                if (result.Error != null) return BadRequest(result.Error.Message);
+            }
+
+            user.Photos.Remove(photo);
+
+            if (await _userRepository.SaveAllAsync()) return Ok();
+
+            return BadRequest("Falha ao deletar foto");
         }
 
         [HttpDelete("{username}")]
