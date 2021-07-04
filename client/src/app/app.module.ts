@@ -12,6 +12,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { MemberListComponent } from './pages/members/member-list/member-list.component';
 import { MemberDetailComponent } from './pages/members/member-detail/member-detail.component';
+import { PhotoEditorComponent } from './pages/members/photo-editor/photo-editor.component';
 import { ListsComponent } from './pages/lists/lists.component';
 import { MessagesComponent } from './pages/messages/messages.component';
 import { SharedModule } from './_modules/shared.module';
@@ -30,7 +31,7 @@ import { BlockUIModule } from 'ng-block-ui';
 //PrimeNg
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
-import { PhotoEditorComponent } from './pages/members/photo-editor/photo-editor.component';
+import { TextInputComponent } from './_forms/text-input/text-input.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { PhotoEditorComponent } from './pages/members/photo-editor/photo-editor.
     MemberCardComponent,
     LoginComponent,
     MemberEditComponent,
-    PhotoEditorComponent
+    PhotoEditorComponent,
+    TextInputComponent
   ],
   imports: [
     BlockUIModule.forRoot(),
@@ -57,6 +59,7 @@ import { PhotoEditorComponent } from './pages/members/photo-editor/photo-editor.
     HttpClientModule,
     BrowserAnimationsModule,
     FormsModule,
+    ReactiveFormsModule,
     ConfirmDialogModule,
     ReactiveFormsModule,
     NgxCaptchaModule,

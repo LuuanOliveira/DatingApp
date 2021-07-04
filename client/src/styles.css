@@ -9,7 +9,7 @@
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: rgb(34, 34, 34);
+    background-color: rgb(110, 110, 110);
     border-radius: 20px;
 }
 
@@ -23,7 +23,8 @@
 }
 
 body { 
-    margin: 0; 
+    margin: 0;
+    background-color: #ffffff; 
     font-family: Roboto, "Helvetica Neue", sans-serif; 
 }
 
@@ -75,4 +76,12 @@ body {
 
 .ngx-gallery-thumbnail.ngx-gallery-active {  
     border: 1px solid #593196 !important;
+}
+
+.ngx-gallery-arrow {
+    color: rgb(110, 110, 110) !important;
+}
+
+.ngx-gallery-arrow:hover {
+    color: black !important;
 }

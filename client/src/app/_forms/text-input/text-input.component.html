@@ -1,0 +1,19 @@
+<div class="form-group">
+    <input 
+        [class.is-invalid]="ngControl.touched && ngControl.invalid"
+        type={{type}} 
+        class="form-control" 
+        name="password"
+        [formControl]="ngControl.control"
+        placeholder={{placeholder}}>
+    <div *ngIf="ngControl.control.errors?.required" class="invalid-feedback">{{label}} é obrigatório</div>
+    <div *ngIf="ngControl.control.errors?.minlength" class="invalid-feedback">
+        {{label}} deve ter pelo menos {{ngControl.control.errors.minlength['requiredLength']}} caracters
+    </div>
+    <div *ngIf="ngControl.control.errors?.maxlength" class="invalid-feedback">
+        {{label}} deve ter no máximo {{ngControl.control.errors.maxlength['requiredLength']}} caracters
+    </div>
+    <div *ngIf="ngControl.control.errors?.isTrue" class="invalid-feedback">
+        As senhas não conferem
+    </div>
+</div>
