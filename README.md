@@ -14,7 +14,7 @@ Developing skills in .NET Core, TypeScript and Angular 💡
 
 ## ✒️ Credits:
 
-* **Developer** - [Dating APP](https://github.com/TryCatchLearn/DatingApp)
+* **Developer** - [Neil Cummings](https://github.com/TryCatchLearn)
 
 ---
 alert('Developer by 💙');
