@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AccountService } from '../../_services/account.service';
@@ -25,11 +25,18 @@ export class LoginComponent implements OnInit {
   { }
 
   ngOnInit(): void {
+    this.initializeForm();
+  }
+
+  initializeForm() {
     this.loginFormGroup = this.fb.group({
-      recaptcha: ['', Validators.required],
       userName: ['', Validators.required],
-      password: ['', Validators.required]
-    });
+      password: ['', Validators.required], 
+      recaptcha: ['', Validators.required]
+    })
+    this.loginFormGroup.controls.password.valueChanges.subscribe(() => {
+      this.loginFormGroup.controls.confirmPassword.updateValueAndValidity();
+    })
   }
 
   login() {

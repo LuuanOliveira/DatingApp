@@ -32,6 +32,7 @@ import { BlockUIModule } from 'ng-block-ui';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
 import { TextInputComponent } from './_forms/text-input/text-input.component';
+import { DateInputComponent } from './_forms/date-input/date-input.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { TextInputComponent } from './_forms/text-input/text-input.component';
     LoginComponent,
     MemberEditComponent,
     PhotoEditorComponent,
-    TextInputComponent
+    TextInputComponent,
+    DateInputComponent
   ],
   imports: [
     BlockUIModule.forRoot(),

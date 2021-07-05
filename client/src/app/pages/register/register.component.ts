@@ -1,6 +1,5 @@
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AccountService } from '../../_services/account.service';
 
@@ -16,6 +15,7 @@ export class RegisterComponent implements OnInit {
   captchaIsExpired: boolean = false;
   siteKey: string = "6LeRhSIbAAAAALKN8pyF5Y6Fd-BbI5atWFioe7gH";
   registerFormGroup: FormGroup;
+  maxDate: Date;
 
   constructor(
     private accountService: AccountService, 
@@ -24,21 +24,23 @@ export class RegisterComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // this.registerFormGroup = this.fb.group({
-    //   recaptcha: ['', Validators.required],
-    //   userName: ['', Validators.required],
-    //   password: ['', Validators.required]
-    // });
     this.initializeForm();
+    this.maxDate = new Date();
+    this.maxDate.setFullYear(this.maxDate.getFullYear() -18);
   }
 
   initializeForm() {
-    this.registerFormGroup = new FormGroup({
-      userName: new FormControl('', [Validators.required, Validators.minLength(2)]),
-      password: new FormControl('', [Validators.required, 
-        Validators.minLength(4), Validators.maxLength(8)]), 
-      confirmPassword: new FormControl('', [Validators.required, this.matchValues('password')]),
-      recaptcha: new FormControl('', Validators.required)
+    this.registerFormGroup = this.fb.group({
+      gender: ['male'],
+      userName: ['', [Validators.required, Validators.minLength(2)]],
+      knowAs: ['', Validators.required],
+      dateOfBirth: ['', Validators.required],
+      city: ['', Validators.required],
+      country: ['', Validators.required],
+      password: ['', [Validators.required, 
+        Validators.minLength(4), Validators.maxLength(8)]], 
+      confirmPassword: ['', [Validators.required, this.matchValues('password')]],
+      recaptcha: ['', Validators.required]
     })
     this.registerFormGroup.controls.password.valueChanges.subscribe(() => {
       this.registerFormGroup.controls.confirmPassword.updateValueAndValidity();
@@ -53,16 +55,16 @@ export class RegisterComponent implements OnInit {
   }
 
   register() {
-    console.log(this.registerFormGroup.value);
-    // if (!this.captchaSuccess) {
-    //   this.toastr.warning("reCAPTCHA Inválido"); 
-    //   return
-    // }
-    // this.accountService.register(this.getForm()).subscribe(response => {
-    //   this.cancel();
-    // }, error => {
-    //   this.toastr.error(error.error);
-    // })
+    if (!this.captchaSuccess) {
+      this.toastr.warning("reCAPTCHA Inválido"); 
+      return
+    }
+    if (this.registerFormGroup.invalid) return;
+    this.accountService.register(this.getForm()).subscribe(response => {
+      this.cancel();
+    }, error => {
+      this.toastr.error(error.error);
+    })
   }
 
   getForm(): any {

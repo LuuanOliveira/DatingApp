@@ -2,14 +2,10 @@
     autocomplete="off">
     <h2 class="text-center text-primary">Entrar</h2>
     <hr>
-    <div class="form-group">
-        <input type="text" class="form-control" name="username"
-            formControlName="userName" placeholder="Usuário">
-    </div>
-    <div class="form-group">
-        <input type="password" class="form-control" name="password"
-            formControlName="password" placeholder="Senha">
-    </div>
+    <app-text-input [formControl]='loginFormGroup.controls["userName"]' 
+        [label]='"Usuário"' [placeholder]='"Usuário"'></app-text-input>
+    <app-text-input [formControl]='loginFormGroup.controls["password"]' 
+        [type]='"password"' [label]='"Senha"' [placeholder]='"Senha"'></app-text-input>
     <div style="display: flex; align-items: center; justify-content: center;" class="form-group">
         <ngx-recaptcha2 [siteKey]="siteKey" (success)="handleSuccess($event)" (error)="handleError()"
             formControlName="recaptcha"></ngx-recaptcha2>
