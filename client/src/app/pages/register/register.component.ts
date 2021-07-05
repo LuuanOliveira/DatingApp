@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AccountService } from '../../_services/account.service';
 
@@ -16,10 +17,12 @@ export class RegisterComponent implements OnInit {
   siteKey: string = "6LeRhSIbAAAAALKN8pyF5Y6Fd-BbI5atWFioe7gH";
   registerFormGroup: FormGroup;
   maxDate: Date;
+  validationErrors: string[] = [];
 
   constructor(
     private accountService: AccountService, 
     private toastr: ToastrService,
+    private router: Router,
     private fb: FormBuilder,
   ) { }
 
@@ -33,7 +36,7 @@ export class RegisterComponent implements OnInit {
     this.registerFormGroup = this.fb.group({
       gender: ['male'],
       userName: ['', [Validators.required, Validators.minLength(2)]],
-      knowAs: ['', Validators.required],
+      knownAs: ['', Validators.required],
       dateOfBirth: ['', Validators.required],
       city: ['', Validators.required],
       country: ['', Validators.required],
@@ -55,24 +58,21 @@ export class RegisterComponent implements OnInit {
   }
 
   register() {
-    if (!this.captchaSuccess) {
-      this.toastr.warning("reCAPTCHA Inválido"); 
-      return
-    }
-    if (this.registerFormGroup.invalid) return;
-    this.accountService.register(this.getForm()).subscribe(response => {
-      this.cancel();
+    if (!this.captchaSuccess) { this.toastr.warning("reCAPTCHA Inválido"); return }
+    if (this.registerFormGroup.invalid) { this.toastr.warning("Formulário Inválido"); return }
+    this.accountService.register(this.registerFormGroup.value).subscribe(response => {
+      this.router.navigateByUrl('/members');
     }, error => {
-      this.toastr.error(error.error);
+      this.validationErrors = error;
     })
   }
 
-  getForm(): any {
-    return {
-      userName: this.registerFormGroup.get('userName').value,
-      password: this.registerFormGroup.get('password').value
-    }
-  }
+  // getForm(): any {
+  //   return {
+  //     userName: this.registerFormGroup.get('userName').value,
+  //     password: this.registerFormGroup.get('password').value
+  //   }
+  // }
   
   handleSuccess(captchaResponse: string): void {
     this.captchaSuccess = true;

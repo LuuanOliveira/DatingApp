@@ -1,4 +1,4 @@
-<form [formGroup]="registerFormGroup" (ngSubmit)="register()" autocomplete="off">
+<form [formGroup]="registerFormGroup" (ngSubmit)="registerFormGroup.valid && register()" autocomplete="off">
     <h2 class="text-center text-primary">Inscrever-se</h2>
     <hr>
     <div class="form-group">
@@ -10,10 +10,9 @@
             <input type="radio" value="female" formControlName='gender' class="ml-3"> Garota
         </label>
     </div>
-
     <app-text-input [formControl]='registerFormGroup.controls["userName"]' 
         [label]='"Usuário"' [placeholder]='"Usuário"'></app-text-input>
-    <app-text-input [formControl]='registerFormGroup.controls["knowAs"]' 
+    <app-text-input [formControl]='registerFormGroup.controls["knownAs"]' 
         [label]='"Apelido"' [placeholder]='"Apelido"'></app-text-input>
     <app-date-input [formControl]='registerFormGroup.controls["dateOfBirth"]' 
         [label]='"Data de Nascimento"' [maxDate]='maxDate' [placeholder]='"Data de Nascimento"'></app-date-input>
@@ -30,8 +29,16 @@
         <ngx-recaptcha2 [siteKey]="siteKey" (success)="handleSuccess($event)" (error)="handleError()"
             formControlName="recaptcha"></ngx-recaptcha2>
     </div>
+
+    <div class="row" *ngIf="validationErrors.length > 0">
+        <ul class="text-danger">
+            <li *ngFor="let error of validationErrors">
+                {{error}}
+            </li>
+        </ul>  
+    </div>
     <div class="form-group text-center">
-        <button class="btn btn-primary mr-2" type="submit">Registrar</button>
+        <button [disabled]='!registerFormGroup.valid' class="btn btn-primary mr-2" type="submit">Registrar</button>
         <button class="btn btn-default mr-2" (click)="cancel()" type="button">Cancelar</button>
     </div>
 </form>
