@@ -33,9 +33,9 @@ export class ErrorInterceptor implements HttpInterceptor {
                 this.toastr.error(error.statusText, error.status);
               }
               break;
-            // case 401:
-            //   this.toastr.error(error.statusText, error.status);
-            //   break;
+            case 401:
+              this.toastr.error(error.statusText, error.status);
+              break;
             case 404:
               this.router.navigateByUrl('/not-found');
               break;
@@ -45,7 +45,7 @@ export class ErrorInterceptor implements HttpInterceptor {
               break;
             default:
               this.toastr.error('Ocorreu um erro inesperado');
-              console.log(error);
+              //console.log(error);
               break;
           }
         }

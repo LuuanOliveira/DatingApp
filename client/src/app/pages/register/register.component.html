@@ -23,7 +23,7 @@
     <app-text-input [formControl]='registerFormGroup.controls["password"]' 
         [type]='"password"' [label]='"Senha"' [placeholder]='"Senha"'></app-text-input>
     <app-text-input [formControl]='registerFormGroup.controls["confirmPassword"]' 
-        [type]='"password"' [label]='"Confirmação"' [placeholder]='"Confirme a Senha"'></app-text-input>
+        [type]='"password"' [label]='"Confirmação de senha"' [placeholder]='"Confirme a Senha"'></app-text-input>
         
     <div style="display: flex; align-items: center; justify-content: center;" class="form-group">
         <ngx-recaptcha2 [siteKey]="siteKey" (success)="handleSuccess($event)" (error)="handleError()"

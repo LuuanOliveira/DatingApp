@@ -57,7 +57,7 @@ export class MemberEditComponent implements OnInit {
       header: 'Confirmação',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        this.memberService.deleteMember(this.member.username).subscribe(() => {
+        this.memberService.deleteMember().subscribe(() => {
           this.toastr.success('Perfil excluído com sucesso')
           this.accountService.logout();
           this.router.navigateByUrl('/');

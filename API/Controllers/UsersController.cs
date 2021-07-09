@@ -128,10 +128,21 @@ namespace API.Controllers
             return BadRequest("Falha ao deletar foto");
         }
 
-        [HttpDelete("{username}")]
-        public async Task<ActionResult> DeleteUser(string username)
+        [HttpDelete("delete-user")]
+        public async Task<ActionResult> DeleteUser()
         {
-            var user = await _userRepository.GetUserByUsernameAsync(username);
+            var user = await _userRepository.GetUserByUsernameAsync(User.GetUserName());
+
+            foreach (var photo in user.Photos) 
+            {
+                if (photo.PublicId != null) 
+                {
+                    var result = await _photoService.DeletePhotoAsync(photo.PublicId);
+                    if (result.Error != null) return BadRequest(result.Error.Message);
+                }
+                
+                user.Photos.Remove(photo);
+            }
 
             _userRepository.DeleteUserAsync(user);
 

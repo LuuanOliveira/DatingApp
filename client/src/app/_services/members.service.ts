@@ -47,7 +47,7 @@ export class MembersService {
     return this.http.delete(this.baseUrl + 'users/delete-photo/' + photoId);
   }
 
-  deleteMember(username: string) {
-    return this.http.delete(this.baseUrl + 'users/' + username);
+  deleteMember() {
+    return this.http.delete(this.baseUrl + 'users/delete-user');
   }
 }
