@@ -6,6 +6,7 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 import { FileUploadModule } from 'ng2-file-upload';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { BlockUIModule } from 'ng-block-ui';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 
 @NgModule({
@@ -20,6 +21,7 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
     NgxGalleryModule,
     FileUploadModule,
     BsDatepickerModule.forRoot(),
+    BlockUIModule.forRoot(),
     PaginationModule.forRoot()
   ],
   exports: [
@@ -29,6 +31,7 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
     NgxGalleryModule,
     FileUploadModule,
     BsDatepickerModule,
+    BlockUIModule,
     PaginationModule
   ]
 })

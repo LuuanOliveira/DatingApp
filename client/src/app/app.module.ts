@@ -26,7 +26,6 @@ import { JwtInterceptor } from './_interceptors/jwt.interceptor';
 import { MemberEditComponent } from './pages/members/member-edit/member-edit.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { LoadingInterceptor } from './_interceptors/loading.interceptor';
-import { BlockUIModule } from 'ng-block-ui';
 
 //PrimeNg
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
@@ -55,7 +54,6 @@ import { DateInputComponent } from './_forms/date-input/date-input.component';
     DateInputComponent
   ],
   imports: [
-    BlockUIModule.forRoot(),
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
