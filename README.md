@@ -1,4 +1,4 @@
-# Dating APP ❤️
+# DatingAPP ❤️
 Developing skills in .NET Core, TypeScript and Angular 💡 
 
 ## :pushpin: APP:
