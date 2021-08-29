@@ -29,12 +29,12 @@
 
                 <div>
                     <strong>Ativo pela última vez::</strong>
-                    <p>{{ member.lastActive }}</p>
+                    <p>{{ member.lastActive | timeago }}</p>
                 </div>
 
                 <div>
                     <strong>Membro desde:</strong>
-                    <p>{{ member.created }}</p>
+                    <p>{{ member.created | date: 'dd.MM.yyyy' }}</p>
                 </div>
             </div>
             <div class="card-footer mb-1">

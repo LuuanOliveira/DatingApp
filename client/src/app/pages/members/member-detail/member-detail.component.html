@@ -16,18 +16,18 @@
 
                 <div>
                     <strong>Ativo pela última vez:</strong>
-                    <p>{{ member.lastActive }}</p>
+                    <p>{{ member.lastActive | timeago }}</p>
                 </div>
 
                 <div>
                     <strong>Membro desde:</strong>
-                    <p>{{ member.created }}</p>
+                    <p>{{ member.created | date: 'dd.MM.yyyy' }}</p>
                 </div>
             </div>
             <div class="card-footer">
                 <div class="btn-group d-flex">
-                    <button class="btn btn-primary">Like</button>
-                    <button class="btn btn-success">Mensagem</button>
+                    <button class="btn btn-primary ml-1">Like</button>
+                    <button class="btn btn-success ml-1">Mensagem</button>
                 </div>
             </div>
         </div>
