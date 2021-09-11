@@ -21,5 +21,7 @@ namespace API.Entities
         public string City { get; set; }
         public string Country { get; set; }
         public ICollection<Photo> Photos { get; set; }
+        public ICollection<UserLike> LikedByUsers { get; set; } //Lista usuário que me curtiram
+        public ICollection<UserLike> LikedUsers { get; set; } //Lista usuários que curti
     }
 }
