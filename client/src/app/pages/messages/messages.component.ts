@@ -29,7 +29,7 @@ export class MessagesComponent implements OnInit {
     })
   }
 
-  pageChanges(event: any) {
+  pageChanged(event: any) {
     this.pageNumber = event.page;
     this.loadMessages();
   }
