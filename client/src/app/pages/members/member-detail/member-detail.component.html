@@ -34,8 +34,8 @@
     </div>
 
     <div class="col-8">
-        <tabset class="member-tabset">
-            <tab heading='Sobre {{ member.knownAs }}'>
+        <tabset class="member-tabset" #memberTabs>
+            <tab heading='Sobre {{ member.knownAs }}' (selectTab)="onTabActivated($event)">
                 <h5><strong>Descrição:</strong></h5>
                 <p>{{ member.introduction }}</p>
                 <h5><strong>Procurando por:</strong></h5>
@@ -43,12 +43,12 @@
                 <h5><strong>Interesses:</strong></h5>
                 <p>{{ member.interests }}</p>
             </tab>
-            <tab heading='Fotos'>
+            <tab heading='Fotos' (selectTab)="onTabActivated($event)">
                 <ngx-gallery style="display: inline-block; margin-bottom: 20px;" 
                     [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
             </tab>
-            <tab heading='Mensagens'>
-                <app-member-messages [username]="member.username"></app-member-messages>
+            <tab heading='Mensagens' (selectTab)="onTabActivated($event)">
+                <app-member-messages [messages]="messages"></app-member-messages>
             </tab>
         </tabset>
     </div>
