@@ -26,4 +26,7 @@ export class MessageService {
     return this.http.post<Message>(this.baseUrl + 'messages', {recipientUserName: username, content}) //Se o nome dos parametros forem iguais não é preciso expecificar, Ex. content: content
   }
 
+  deleteMessage(id: number) {
+    return this.http.delete(this.baseUrl + 'messages/' + id);
+  }
 }

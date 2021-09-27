@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { Message } from 'src/app/_models/message';
 import { Pagination } from 'src/app/_models/paginations';
 import { MessageService } from 'src/app/_services/message.service';
@@ -16,7 +17,7 @@ export class MessagesComponent implements OnInit {
   pageSize = 5;
   loading = false;
 
-  constructor(private messageService: MessageService) { }
+  constructor(private messageService: MessageService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.loadMessages();
@@ -28,6 +29,13 @@ export class MessagesComponent implements OnInit {
       this.messages = resp.result;
       this.pagination = resp.pagination;
       this.loading = false;
+    })
+  }
+
+  deleteMessage(id: number) {
+    this.messageService.deleteMessage(id).subscribe(() => {
+      this.messages.splice(this.messages.findIndex(m => m.id === id), 1)
+      this.toastr.success('Mensagem apagada com sucesso')
     })
   }
 
