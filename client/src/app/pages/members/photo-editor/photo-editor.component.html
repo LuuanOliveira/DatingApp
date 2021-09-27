@@ -18,7 +18,7 @@
                 [disabled]="photo.isMain"
                 (click)="deletePhoto(photo.id)"
                 class="btn btn-sm btn-danger"
-                title="Remover"
+                title="Apagar"
             ><i class="fa fa-trash"></i></button>
         </div>
     </div>
@@ -78,7 +78,7 @@
             </button>
             <button type="button" class="btn btn-danger"
                 (click)="uploader.clearQueue()" [disabled]="!uploader.queue.length">
-                <span class="fa fa-trash"></span> Remover
+                <span class="fa fa-trash"></span> Apagar
             </button>
         </div>
 

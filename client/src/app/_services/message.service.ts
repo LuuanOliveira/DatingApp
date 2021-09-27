@@ -20,7 +20,10 @@ export class MessageService {
 
   getMessageThread(username: string) {
     return this.http.get<Message[]>(this.baseUrl + 'messages/thread/' + username);
+  }
 
+  sendMessage(username: string, content: string) {
+    return this.http.post<Message>(this.baseUrl + 'messages', {recipientUserName: username, content}) //Se o nome dos parametros forem iguais não é preciso expecificar, Ex. content: content
   }
 
 }
