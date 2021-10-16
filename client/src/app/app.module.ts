@@ -33,6 +33,7 @@ import { ConfirmationService } from 'primeng/api';
 import { TextInputComponent } from './_forms/text-input/text-input.component';
 import { DateInputComponent } from './_forms/date-input/date-input.component';
 import { MemberMessagesComponent } from './pages/members/member-messages/member-messages.component';
+import { AdminPanelComponent } from './pages/admin/admin-panel/admin-panel.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { MemberMessagesComponent } from './pages/members/member-messages/member-
     PhotoEditorComponent,
     TextInputComponent,
     DateInputComponent,
-    MemberMessagesComponent
+    MemberMessagesComponent,
+    AdminPanelComponent
   ],
   imports: [
     BrowserModule,
