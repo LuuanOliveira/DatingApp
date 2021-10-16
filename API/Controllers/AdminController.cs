@@ -35,6 +35,30 @@ namespace API.Controllers
             return Ok(users);
         }
 
+        [HttpPost("edit-roles/{username}")]
+        public async Task<ActionResult> EditRoles(string username, [FromQuery] string roles) 
+        {
+            var selectedRoles = roles.Split(",").ToArray();
+
+            var user = await _userManager.FindByNameAsync(username);
+
+            if (user == null) return NotFound("Usuário não encontrado");
+
+            var userRoles = await _userManager.GetRolesAsync(user);
+
+            //Adicione as roles ao user, Exceto as já existentes
+            var result = await _userManager.AddToRolesAsync(user, selectedRoles.Except(userRoles));
+
+            if (!result.Succeeded) return BadRequest("Falha ao adicionar a função");
+
+            //Remova as roles do user -> userRoles, Exceto (Except) as novas roles -> selectedRoles
+            result = await _userManager.RemoveFromRolesAsync(user, userRoles.Except(selectedRoles));
+
+            if (!result.Succeeded) return BadRequest("Falha ao remover as funções");
+
+            return Ok(await _userManager.GetRolesAsync(user));
+        }
+
         [Authorize(Policy = "ModeratePhotoRole")]
         [HttpGet("photos-to-moderate")]
         public ActionResult GetPhotosForModeration()
