@@ -7,6 +7,7 @@ Developing skills in .NET Core, TypeScript and Angular 💡
 
 ## 🛠️ Construction:
 
+* [Authentication] - Identity
 * [Swagger] - Documentation
 * [.NET CORE] - Back-End
 * [Angular] - Front-End
