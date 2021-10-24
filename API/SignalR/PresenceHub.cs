@@ -9,14 +9,28 @@ namespace API.SignalR
     [Authorize]
     public class PresenceHub : Hub
     {
-        public override async Task OnConnectedAsync() 
+        private readonly PresenceTracker _tracker;
+        public PresenceHub(PresenceTracker tracker)
         {
-            await Clients.Others.SendAsync("UserIsOnline", Context.User.GetUserName());
+            _tracker = tracker;
         }
 
-        public override async Task OnDisconnectedAsync(Exception exception) 
+        public override async Task OnConnectedAsync()
         {
+            await _tracker.UserConnected(Context.User.GetUserName(), Context.ConnectionId); //atualiza o rastreador de presença
+            await Clients.Others.SendAsync("UserIsOnline", Context.User.GetUserName());
+
+            var currentUsers = await _tracker.GetOnlineUsers();
+            await Clients.All.SendAsync("GetOnlineUsers", currentUsers); //enviar a lista de usuários conectados para todos 
+        }
+
+        public override async Task OnDisconnectedAsync(Exception exception)
+        {
+            await _tracker.UserDisconnected(Context.User.GetUserName(), Context.ConnectionId);
             await Clients.Others.SendAsync("UserIsOffiline", Context.User.GetUserName());
+
+            var currentUsers = await _tracker.GetOnlineUsers();
+            await Clients.All.SendAsync("GetOnlineUsers", currentUsers);
 
             await base.OnDisconnectedAsync(exception);
         }
