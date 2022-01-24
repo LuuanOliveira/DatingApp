@@ -47,7 +47,7 @@ export class PresenceService {
     })
 
     this.hubConnection.on('NewMessageReceived', ({username, knownAs}) => {
-      this.toastr.info(knownAs + 'enviou uma nova mensagem para vocêss')
+      this.toastr.info(knownAs + ' enviou uma nova mensagem para você')
         .onTap
         .pipe(take(1))
         .subscribe(() => this.router.navigateByUrl('/members/' + username + '?tab=2'));
