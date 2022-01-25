@@ -41,7 +41,7 @@ namespace API.Data
 
             var admin = new AppUser 
             {
-                UserName = "admin"
+                UserName = "joao"
             };
 
             await userManager.CreateAsync(admin, "Pa$$w0rd");
