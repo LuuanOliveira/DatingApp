@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { Message } from 'src/app/_models/message';
 import { Pagination } from 'src/app/_models/paginations';
+import { ConfirmService } from 'src/app/_services/confirm.service';
 import { MessageService } from 'src/app/_services/message.service';
 
 @Component({
@@ -17,7 +18,7 @@ export class MessagesComponent implements OnInit {
   pageSize = 5;
   loading = false;
 
-  constructor(private messageService: MessageService, private toastr: ToastrService) { }
+  constructor(private messageService: MessageService, private toastr: ToastrService, private confirmService: ConfirmService) { }
 
   ngOnInit(): void {
     this.loadMessages();
@@ -33,10 +34,14 @@ export class MessagesComponent implements OnInit {
   }
 
   deleteMessage(id: number) {
-    this.messageService.deleteMessage(id).subscribe(() => {
-      this.messages.splice(this.messages.findIndex(m => m.id === id), 1)
-      this.toastr.success('Mensagem apagada com sucesso')
-    })
+    this.confirmService.confirm('Apagar mensagem', 'A mensagem será apagada').subscribe(result => {
+      if (result) {
+        this.messageService.deleteMessage(id).subscribe(() => {
+          this.messages.splice(this.messages.findIndex(m => m.id === id), 1)
+          this.toastr.success('Mensagem apagada com sucesso')
+        })
+      }
+    });
   }
 
   pageChanged(event: any) {
