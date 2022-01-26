@@ -44,7 +44,7 @@ namespace API.Data
                 UserName = "joao"
             };
 
-            await userManager.CreateAsync(admin, "Pa$$w0rd");
+            await userManager.CreateAsync(admin, "admin");
             await userManager.AddToRolesAsync(admin, new[] {"Admin", "Moderator"});
         }
     }
