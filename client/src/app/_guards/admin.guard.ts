@@ -14,8 +14,10 @@ export class AdminGuard implements CanActivate {
   canActivate(): Observable<boolean> {
     return this.accountService.currentUser$.pipe(
       map(user => {
+        if (user.roles.includes('Admin') || user.roles.includes('Moderator')) {
           return true;
-        // this.toastr.error('Acesso Negado');
+        }
+        this.toastr.error('Acesso Negado');
       })
     );
   }
