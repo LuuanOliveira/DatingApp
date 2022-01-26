@@ -1,12 +1,14 @@
 <div class="card">
-    <div class="card-body">
+    <div class="card-body"
+        #scrollMe
+        style="overflow: auto; height: 400px;"
+        [scrollTop]="scrollMe.scrollHeight"
+    >
         <div *ngIf="(messageService.messageThread$ | async)?.length === 0">
             <strong>Você ainda não enviou nenhuma mensagem... Use a caixa de mensagem abaixo!</strong>
         </div>
 
-        <ul #scrollMe
-            style="overflow: auto; height: 400px;"
-            [scrollTop]="scrollMe.scrollHeight"
+        <ul 
             *ngIf="(messageService.messageThread$ | async)?.length > 0" 
             class="chat">
             <li *ngFor="let message of (messageService.messageThread$ | async)">
@@ -47,7 +49,9 @@
                     class="form-control input-sm" 
                     placeholder="Envie uma mensagem privada">
                 <div class="input-group-append">
-                    <button [disabled]="!messageForm.valid" class="btn btn-primary" type="submit">Enviar</button>
+                    <button [disabled]="!messageForm.valid || loading" class="btn btn-primary" type="submit">
+                        <i *ngIf="loading" class="fa fa-spinner fa-spin"></i> Enviar
+                    </button>
                 </div>
             </div>
         </form>
