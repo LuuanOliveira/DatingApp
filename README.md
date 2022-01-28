@@ -4,7 +4,7 @@ Developing skills in .NET Core, Identity, TypeScript and Angular 💡
 ## :pushpin: APP:
 
 <ul>
-<li> <a target="_blank" href="https://appmatchweb.herokuapp.com/"> Acessar </a></li>
+<li> <a target="_blank" href="https://appmatchweb.herokuapp.com/"> Access </a></li>
 </ul>
 <br />
 
