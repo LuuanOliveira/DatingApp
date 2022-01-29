@@ -30,6 +30,14 @@ import { LoadingInterceptor } from './_interceptors/loading.interceptor';
 //PrimeNg
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
+import { PasswordModule } from 'primeng/password';
+import { InputTextModule } from 'primeng/inputtext';
+import { CalendarModule } from 'primeng/calendar';
+import { ButtonModule } from 'primeng/button';
+import { RadioButtonModule } from 'primeng/radiobutton';
+import { DividerModule } from 'primeng/divider';
+
+//
 import { TextInputComponent } from './_forms/text-input/text-input.component';
 import { DateInputComponent } from './_forms/date-input/date-input.component';
 import { MemberMessagesComponent } from './pages/members/member-messages/member-messages.component';
@@ -75,6 +83,12 @@ import { ConfirmDialogComponent } from './modals/confirm-dialog/confirm-dialog.c
     FormsModule,
     ReactiveFormsModule,
     ConfirmDialogModule,
+    PasswordModule,
+    InputTextModule,
+    ButtonModule,
+    CalendarModule,
+    RadioButtonModule,
+    DividerModule,
     ReactiveFormsModule,
     NgxCaptchaModule,
     SharedModule,

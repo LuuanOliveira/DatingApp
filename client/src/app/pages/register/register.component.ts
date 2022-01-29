@@ -38,11 +38,8 @@ export class RegisterComponent implements OnInit {
       userName: ['', [Validators.required, Validators.minLength(2)]],
       knownAs: ['', Validators.required],
       dateOfBirth: ['', Validators.required],
-      city: ['', Validators.required],
-      country: ['', Validators.required],
       password: ['', [Validators.required, 
         Validators.minLength(4), Validators.maxLength(8)]], 
-      confirmPassword: ['', [Validators.required, this.matchValues('password')]],
       recaptcha: ['', Validators.required]
     })
     this.registerFormGroup.controls.password.valueChanges.subscribe(() => {
@@ -50,12 +47,12 @@ export class RegisterComponent implements OnInit {
     })
   }
 
-  matchValues(matchTo: string): ValidatorFn {
-    return (control: AbstractControl) => {
-      return control.value === control?.parent?.controls[matchTo].value 
-        ? null : {isTrue: true}
-    }
-  }
+  // matchValues(matchTo: string): ValidatorFn {
+  //   return (control: AbstractControl) => {
+  //     return control.value === control?.parent?.controls[matchTo].value 
+  //       ? null : {isTrue: true}
+  //   }
+  // }
 
   register() {
     if (!this.captchaSuccess) { this.toastr.warning("reCAPTCHA Inválido"); return }
@@ -66,13 +63,6 @@ export class RegisterComponent implements OnInit {
       this.validationErrors = error;
     })
   }
-
-  // getForm(): any {
-  //   return {
-  //     userName: this.registerFormGroup.get('userName').value,
-  //     password: this.registerFormGroup.get('password').value
-  //   }
-  // }
   
   handleSuccess(captchaResponse: string): void {
     this.captchaSuccess = true;

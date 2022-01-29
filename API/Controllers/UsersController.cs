@@ -141,15 +141,18 @@ namespace API.Controllers
         {
             var user = await _unitOfWork.UserRepository.GetUserByUsernameAsync(User.GetUserName());
 
-            foreach (var photo in user.Photos)
+            if (user.Photos.Count > 0)
             {
-                if (photo.PublicId != null)
+                foreach (var photo in user.Photos)
                 {
-                    var result = await _photoService.DeletePhotoAsync(photo.PublicId);
-                    if (result.Error != null) return BadRequest(result.Error.Message);
-                }
+                    if (photo.PublicId != null)
+                    {
+                        var result = await _photoService.DeletePhotoAsync(photo.PublicId);
+                        if (result.Error != null) return BadRequest(result.Error.Message);
+                    }
 
-                user.Photos.Remove(photo);
+                    user.Photos.Remove(photo);
+                }
             }
 
             _unitOfWork.UserRepository.DeleteUserAsync(user);
