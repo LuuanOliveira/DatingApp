@@ -3,28 +3,81 @@
     <hr>
     <div class="form-group">
         <label class="control-label" style="margin-right: 10px;">Me considero: </label>
-        <label class="radio-inline">
-            <input type="radio" value="male" formControlName='gender'> Garoto
+        
+        <label class="radio-inline"> 
+            <p-radioButton name="gender" value="male" formControlName='gender' inputId="gender1"></p-radioButton> Garoto
         </label>
-        <label class="radio-inline">
-            <input type="radio" value="female" formControlName='gender' class="ml-3"> Garota
+        
+        <label class="radio-inline"> 
+            <p-radioButton name="gender" value="female" formControlName='gender' inputId="gender2" class="ml-3"></p-radioButton> Garota
         </label>
     </div>
-    <app-text-input [formControl]='registerFormGroup.controls["userName"]' 
-        [label]='"Usuário"' [placeholder]='"Usuário"'></app-text-input>
-    <app-text-input [formControl]='registerFormGroup.controls["knownAs"]' 
-        [label]='"Apelido"' [placeholder]='"Apelido"'></app-text-input>
-    <app-date-input [formControl]='registerFormGroup.controls["dateOfBirth"]' 
-        [label]='"Data de Nascimento"' [maxDate]='maxDate' [placeholder]='"Data de Nascimento"'></app-date-input>
-    <app-text-input [formControl]='registerFormGroup.controls["city"]' 
-        [label]='"Cidade"' [placeholder]='"Cidade"'></app-text-input>
-    <app-text-input [formControl]='registerFormGroup.controls["country"]' 
-        [label]='"País"' [placeholder]='"País"'></app-text-input>
-    <app-text-input [formControl]='registerFormGroup.controls["password"]' 
-        [type]='"password"' [label]='"Senha"' [placeholder]='"Senha"'></app-text-input>
-    <app-text-input [formControl]='registerFormGroup.controls["confirmPassword"]' 
-        [type]='"password"' [label]='"Confirmação de senha"' [placeholder]='"Confirme a Senha"'></app-text-input>
-        
+
+    <div class="mb-2">
+        <input type="text" pInputText [formControl]='registerFormGroup.controls["userName"]' 
+            [placeholder]='"Usuário"'> 
+    </div>
+
+    <div class="mb-2">
+        <input type="text" pInputText [formControl]='registerFormGroup.controls["knownAs"]' 
+            [placeholder]='"Apelido"'>
+    </div>
+
+    <div class="mb-2">
+        <p-calendar [formControl]='registerFormGroup.controls["dateOfBirth"]' 
+            [placeholder]='"Data de Nascimento"' [touchUI]='true' dateFormat="dd/mm/yy" [maxDate]='maxDate'
+            [monthNavigator]="true" [yearNavigator]="true" yearRange="1930:2090" inputId="date"></p-calendar>
+    </div>
+
+    <!-- <div class="mb-2">
+        <input type="text" pInputText [formControl]='registerFormGroup.controls["city"]' 
+            [placeholder]='"Cidade"'>
+    </div>
+
+    <div class="mb-2">
+        <input type="text" pInputText [formControl]='registerFormGroup.controls["country"]' 
+            [placeholder]='"País"'>
+    </div> -->
+
+    <!-- <app-text-input [formControl]='registerFormGroup.controls["password"]' 
+        [type]='"password"' [label]='"Senha"' [placeholder]='"Senha"'></app-text-input> -->
+    <!-- <app-text-input [formControl]='registerFormGroup.controls["confirmPassword"]' 
+        [type]='"password"' [label]='"Confirmação de senha"' [placeholder]='"Confirme a Senha"'></app-text-input> -->
+
+    <div class="mb-4">
+        <p-password [formControl]='registerFormGroup.controls["password"]' [toggleMask]="true"
+            [placeholder]='"Senha"' [promptLabel]='"Escolha uma senha"' 
+            [weakLabel]='"Fraca"' [mediumLabel]='"Média"' [strongLabel]='"Forte"'>
+            <ng-template pTemplate="footer">
+                <p-divider></p-divider>
+                <p class="p-mt-2">Sugestão</p>
+                <ul class="p-pl-2 p-ml-2 p-mt-0" style="line-height: 1.5">
+                    <li>Pelo menos uma minúscula</li>
+                    <li>Pelo menos uma maiúscula</li>
+                    <li>Pelo menos um numérico</li>
+                    <li>Minímo 6 characters</li>
+                </ul>
+            </ng-template>
+        </p-password>
+    </div>
+    
+    <!-- <div class="mb-4">
+        <p-password [formControl]='registerFormGroup.controls["confirmPassword"]' [toggleMask]="true"
+            [placeholder]='"Confirme sua senha"' [promptLabel]='"Confirme sua senha"' 
+            [weakLabel]='"Fraca"' [mediumLabel]='"Média"' [strongLabel]='"Forte"'>
+            <ng-template pTemplate="footer">
+                <p-divider></p-divider>
+                <p class="p-mt-2">Sugestão</p>
+                <ul class="p-pl-2 p-ml-2 p-mt-0" style="line-height: 1.5">
+                    <li>Pelo menos uma minúscula</li>
+                    <li>Pelo menos uma maiúscula</li>
+                    <li>Pelo menos um numérico</li>
+                    <li>Minímo 6 characters</li>
+                </ul>
+            </ng-template>
+        </p-password>
+    </div> -->
+
     <div style="display: flex; align-items: center; justify-content: center;" class="form-group">
         <ngx-recaptcha2 [siteKey]="siteKey" (success)="handleSuccess($event)" (error)="handleError()"
             formControlName="recaptcha"></ngx-recaptcha2>
@@ -38,7 +91,10 @@
         </ul>  
     </div>
     <div class="form-group text-center">
-        <button [disabled]='!registerFormGroup.valid' class="btn btn-primary mr-2" type="submit">Registrar</button>
-        <button class="btn btn-default mr-2" (click)="cancel()" type="button">Cancelar</button>
+        <!-- <button [disabled]='!registerFormGroup.valid' class="btn btn-primary mr-2" type="submit">Registrar</button>
+        <button class="btn btn-default mr-2" (click)="cancel()" type="button">Cancelar</button> -->
+
+        <button [disabled]='!registerFormGroup.valid' pButton pRipple type="submit" label="Registrar" class="p-button-raised p-button-help mr-2"></button>
+        <button pButton pRipple type="button" (click)="cancel()" label="Cancelar" class="p-button-help p-button-text"></button>
     </div>
 </form>

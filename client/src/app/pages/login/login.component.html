@@ -1,17 +1,31 @@
-<form *ngIf="(accountService.currentUser$ | async) === null" [formGroup]="loginFormGroup" (ngSubmit)="login()" 
-    autocomplete="off">
+<form *ngIf="(accountService.currentUser$ | async) === null" [formGroup]="loginFormGroup" 
+    (ngSubmit)="login()" autocomplete="off">
     <h2 class="text-center text-primary">Entrar</h2>
     <hr>
-    <app-text-input [formControl]='loginFormGroup.controls["userName"]' 
-        [label]='"Usuário"' [placeholder]='"Usuário"'></app-text-input>
-    <app-text-input [formControl]='loginFormGroup.controls["password"]' 
-        [type]='"password"' [label]='"Senha"' [placeholder]='"Senha"'></app-text-input>
+    <!-- <app-text-input [formControl]='loginFormGroup.controls["userName"]' 
+        [label]='"Usuário"' [placeholder]='"Usuário"'></app-text-input> -->
+    <!-- <app-text-input [formControl]='loginFormGroup.controls["password"]' 
+        [type]='"password"' [label]='"Senha"' [placeholder]='"Senha"'></app-text-input> -->
+
+    <div class="mb-4">
+        <input type="text" pInputText [formControl]='loginFormGroup.controls["userName"]' 
+            [placeholder]='"Usuário"'> 
+    </div>
+
+    <div class="mb-4">
+        <p-password [formControl]='loginFormGroup.controls["password"]' 
+            [toggleMask]="true" [placeholder]='"Senha"' [feedback]='false'>
+        </p-password>
+    </div>
+
     <div style="display: flex; align-items: center; justify-content: center;" class="form-group">
         <ngx-recaptcha2 [siteKey]="siteKey" (success)="handleSuccess($event)" (error)="handleError()"
             formControlName="recaptcha"></ngx-recaptcha2>
     </div>
+
     <div class="form-group text-center mt-3">
-        <button [disabled]='!loginFormGroup.valid' class="btn btn-primary mr-2" type="submit">Entrar</button>
-        <button class="btn btn-default mr-2" (click)="cancel()" type="button">Cancelar</button>
+        <button [disabled]='!loginFormGroup.valid' pButton pRipple type="submit" label="Entrar" class="p-button-raised p-button-help mr-2"></button>
+        <button pButton pRipple type="button" (click)="cancel()" label="Cancelar" class="p-button-help p-button-text"></button>
     </div>
+
 </form>
