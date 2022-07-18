@@ -42,9 +42,9 @@ export class RegisterComponent implements OnInit {
         Validators.minLength(4), Validators.maxLength(8)]], 
       recaptcha: ['', Validators.required]
     })
-    this.registerFormGroup.controls.password.valueChanges.subscribe(() => {
-      this.registerFormGroup.controls.confirmPassword.updateValueAndValidity();
-    })
+    // this.registerFormGroup.controls.password.valueChanges.subscribe(() => {
+    //   this.registerFormGroup.controls.confirmPassword.updateValueAndValidity();
+    // })
   }
 
   // matchValues(matchTo: string): ValidatorFn {
